@@ -2,8 +2,7 @@
 // Create a kms key for this bucket or use a standard kms key when creating the bucket
 
 module "kms_key" {
-  source  = "terraform-aws-modules/kms/aws"
-  version = "3.1.1" # Check for the latest version on the GitHub page
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-kms.git?ref=c20bffd41ce9716140cb9938faf0aa147b38ca2a"
 
   description             = "KMS key for WizardAI S3 bucket encryption"
   deletion_window_in_days = 10 # How long to wait before deletion
