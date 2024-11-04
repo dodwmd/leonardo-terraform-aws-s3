@@ -33,8 +33,8 @@ jobs:
         uses: devcontainers/ci@v0.3
         with:
           runCmd: pre-commit run -a
-          imageName: ghcr.io/dontshavetheyak/terraform-template-module-devcontainer
-          cacheFrom: ghcr.io/dontshavetheyak/terraform-template-module-devcontainer:latest
+          imageName: ghcr.io/dodwmd/leonardo-terraform-aws-s3
+          cacheFrom: ghcr.io/dodwmd/leonardo-terraform-aws-s3:latest
 
   test:
     needs: pre_commit
