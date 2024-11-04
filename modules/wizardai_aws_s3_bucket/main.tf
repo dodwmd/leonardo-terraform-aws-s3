@@ -1,14 +1,11 @@
 # main.tf
 
 # Create the S3 bucket
-# tfsec:ignore:aws-s3-enable-logging
-# tfsec:ignore:aws-s3-enable-bucket-logging
 # checkov:skip=CKV2_AWS_62:Out of scope for this demo
 # checkov:skip=CKV_AWS_18:Out of scope for this demo
 # checkov:skip=CKV_AWS_144:Out of scope for this demo
 resource "aws_s3_bucket" "this" {
   bucket = format("wizardai-%s-%s", lower(var.name), lower(var.environment))
-
   force_destroy = var.force_destroy
 
   # Tags
