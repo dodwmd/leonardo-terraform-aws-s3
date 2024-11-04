@@ -3,7 +3,7 @@
 
 module "kms_key" {
   source  = "terraform-aws-modules/kms/aws"
-  version = "3.0.0" # Check for the latest version on the GitHub page
+  version = "3.1.1" # Check for the latest version on the GitHub page
 
   name                    = "wizardai-${var.name}"
   description             = "KMS key for WizardAI S3 bucket encryption"
