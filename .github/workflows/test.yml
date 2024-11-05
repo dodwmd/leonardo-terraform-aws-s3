@@ -56,9 +56,8 @@ jobs:
           cache-dependency-path: go.sum
 
       - name: test
-        working-directory: tests
         run: go test -v ./tests
-        
+
   multi:
     needs: test
     runs-on: ubuntu-latest
