@@ -12,10 +12,19 @@ resource "aws_s3_bucket" "this" {
   tags = var.tags
 }
 
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "this" {
+  bucket = aws_s3_bucket.this.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
 # Set the ACL for the S3 bucket
 resource "aws_s3_bucket_acl" "this" {
-  bucket = aws_s3_bucket.this.id
-  acl    = "private"
+  bucket     = aws_s3_bucket.this.id
+  acl        = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.this]
 }
 
 resource "aws_s3_bucket_public_access_block" "this" {

@@ -34,7 +34,7 @@
 		// Run "terraform init" and "terraform apply"
 		terraform.InitAndApply(t, terraformOptions)
 
-		// Run test checks (e.g., ensure bucket name is correctly set)
-		bucketID := terraform.Output(t, terraformOptions, "name")
-		assert.Equal(t, bucketID, "example-bucket")
+		// Run test checks (e.g., ensure bucket id is correctly set)
+		bucketID := terraform.Output(t, terraformOptions, "bucket_id")
+		assert.Equal(t, bucketID, "wizardai-example-development")
 	}
