@@ -8,10 +8,10 @@ permissions: read-all
 
 jobs:
   label:
-    name: Check Labels
+    name: check labels
     runs-on: ubuntu-latest
     steps:
-      - name: Has semver label
+      - name: has semver label
         uses: jesusvasquez333/verify-pr-label-action@v1.4.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -19,7 +19,7 @@ jobs:
           pull-request-number: ${{ github.event.pull_request.number }}
           disable-reviews: true
 
-      - name: Has change type label
+      - name: has change type label
         uses: jesusvasquez333/verify-pr-label-action@v1.4.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

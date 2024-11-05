@@ -1,4 +1,4 @@
-name: Release
+name: release
 
 on:
   pull_request:
@@ -8,14 +8,14 @@ permissions: read-all
 
 jobs:
   release:
-    name: Create Release
+    name: create release
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged && github.base_ref == 'main'
     permissions:
       contents: write
       pull-requests: write
     steps:
-      - name: Create Release
+      - name: create release
         uses: release-drafter/release-drafter@v6.0.0
         if: github.base_ref == 'main'
         with:
