@@ -20,7 +20,7 @@ To utilize the Wizard.Ai S3 Bucket Module, include the following code in your Te
 
 ```hcl
 module "s3_bucket" {
-  source = "../../modules/wizardai_aws_s3_bucket"
+  source = "./modules/wizardai_aws_s3_bucket"
 
   name        = "example-bucket"
   environment = "development"
