@@ -13,7 +13,7 @@ func TestS3BucketModule(t *testing.T) {
 	t.Parallel()
 
 	// Generate a unique bucket name by appending a random suffix
-	randomID := random.UniqueId()
+	randomID := strings.ToLower(random.UniqueId())
 	bucketName := "example-" + randomID
 
 	// Define Terraform options
