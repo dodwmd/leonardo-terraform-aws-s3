@@ -14,22 +14,22 @@ permissions: read-all
 jobs:
   pre_commit:
     runs-on: ubuntu-latest
-    name: Pre-commit
+    name: pre-commit
     permissions:
       contents: read
       packages: write
     steps:
-      - name: Checkout Code
+      - name: checkout code
         uses: actions/checkout@v4.2.2
 
-      - name: Login to GitHub Container Registry
+      - name: login to gitHub container registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and run dev container task
+      - name: build and run dev container task
         uses: devcontainers/ci@v0.3
         with:
           runCmd: pre-commit run -a
@@ -39,48 +39,48 @@ jobs:
   test:
     needs: pre_commit
     runs-on: ubuntu-latest
-    name: Terraform Latest
+    name: terraform latest
     steps:
-      - name: Checkout Code
+      - name: checkout code
         uses: actions/checkout@v4.2.2
 
-      - name: Setup latest Terraform
+      - name: setup latest terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_wrapper: false
 
-      - name: Set up Go
+      - name: set up go
         uses: actions/setup-go@v5.1.0
         with:
-          go-version-file: tests/go.mod
-          cache-dependency-path: tests/go.sum
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
 
-      - name: Test
+      - name: test
         working-directory: tests
-        run: go test
-
+        run: go test -v ./tests
+        
   multi:
     needs: test
     runs-on: ubuntu-latest
     strategy:
       matrix:
         terraform-version: ['1.9.8']
-    name: Terraform ${{ matrix.terraform-version }}
+    name: terraform ${{ matrix.terraform-version }}
     steps:
-      - name: Checkout Code
+      - name: checkout code
         uses: actions/checkout@v4.2.2
 
-      - name: Setup Terraform ${{ matrix.terraform-version }}
+      - name: setup terraform ${{ matrix.terraform-version }}
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ matrix.terraform-version }}
           terraform_wrapper: false
 
-      - name: Set up Go
+      - name: set up go
         uses: actions/setup-go@v5.1.0
         with:
           go-version-file: go.mod
           cache-dependency-path: go.sum
 
-      - name: Test
+      - name: test
         run: go test -v ./tests
