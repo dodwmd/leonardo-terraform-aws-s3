@@ -57,8 +57,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     id     = "limit-versions"
     status = "Enabled"
 
-    expiration {
-      days = 30
+    noncurrent_version_expiration {
+      noncurrent_days = 30
     }
 
     abort_incomplete_multipart_upload {
