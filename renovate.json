@@ -8,8 +8,8 @@
           "pin",
           "digest"
         ],
-        "labels": ["minor", "bugfix"]
-        "automerge": true
+        "labels": ["minor", "bugfix"],
+        "automerge": true,
         "automergeType": "branch"
       }
     ],
