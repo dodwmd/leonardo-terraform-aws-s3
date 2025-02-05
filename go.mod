@@ -2,7 +2,7 @@ module terraform-module-template
 
 go 1.21
 
-toolchain go1.23.5
+toolchain go1.23.6
 
 require (
 	github.com/gruntwork-io/terratest v0.48.1
